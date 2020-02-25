@@ -35,7 +35,7 @@ class WhatsAppController(object):
         data = json.loads(data, encoding='utf-8')
         event_dt = EventDto(data['event'], data['from'], data['to'], data['text'])
         print(f"\n the notification received is {event_dt}")
-        return {'post': 'UP'}
+        return event_dt.__dict__
 
     def __call__(self, *args, **kwargs):
         pass
