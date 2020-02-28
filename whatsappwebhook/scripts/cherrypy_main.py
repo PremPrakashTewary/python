@@ -12,15 +12,15 @@ if __name__ == '__main__':
     dispatcher.connect(name='test_post', route='/v1/:action/', controller=whatsapp_controller, action='post',
                        conditions=dict(method=['POST']))
     conf = {'/': {'request.dispatch': dispatcher, 'tools.json_in.force': False}}
-    '''cherrypy.config.update({'/': {
+    cherrypy.config.update({'global': {
         'environment': 'production',
         'log.screen': False,
         'server.socket_host': '127.0.0.1',
-        'server.socket_port': 8080,
+        'server.socket_port': 8088,
         'tools.caching.on': False,
         'tools.encode.encoding': "utf-8",
         'tools.json_in.on': True,
         'tools.json_in.force': False,
         'request.dispatch': dispatcher
-    }})'''
+    }})
     cherrypy.quickstart(root=None, config=conf)

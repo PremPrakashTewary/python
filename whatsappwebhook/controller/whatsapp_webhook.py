@@ -7,23 +7,14 @@ from dto import EventDto
 
 class PingController(object):
 
-    def __init__(self):
-        pass
-
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
     def health(self):
         print("\n health")
         return {'status': 'UP'}
 
-    def __call__(self, *args, **kwargs):
-        pass
-
 
 class WhatsAppController(object):
-
-    def __init__(self):
-        pass
 
     @cherrypy.tools.accept(media="application/x-www-form-urlencoded")
     @cherrypy.tools.json_out()
@@ -33,9 +24,9 @@ class WhatsAppController(object):
             raise Exception('No Data object')
         print(f"\n json is {data}")
         data = json.loads(data, encoding='utf-8')
-        event_dt = EventDto(data['event'], data['from'], data['to'], data['text'])
+        event_dt = EventDto(data)
         print(f"\n the notification received is {event_dt}")
+        if event_dt.event_name.upper() == 'INBOX':
+            print("\n Should send auto reply")
+            return {'autoreply': 'Hi, I got your message. Will get back to you soon.'}
         return event_dt.__dict__
-
-    def __call__(self, *args, **kwargs):
-        pass
