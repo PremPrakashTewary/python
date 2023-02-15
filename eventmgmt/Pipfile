@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 Flask = "*"
-werkzeug = "==0.16.0"
+werkzeug = "==2.2.3"
 #flask-serialize = "*"
 #connexion = "*"
 #flask_restplus = "*"
